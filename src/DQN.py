@@ -109,7 +109,7 @@ if __name__ == '__main__':
         type=int, default=[1])
     parser.add_argument(
         '--model_name', help='Models implemented are: Network3d, CommNet',
-        default="CommNet", choices=['CommNet', 'Network3d'], type=str)
+        default="CommNet", choices=['CommNet', 'Network3d', 'Network3d_stacked', 'GraphNet'], type=str)
     parser.add_argument(
         '--batch_size', help='Size of each batch', default=64, type=int)
     parser.add_argument(
@@ -163,6 +163,9 @@ if __name__ == '__main__':
 
     # check valid number of agents:
     assert agents > 0
+
+    # initial memory size cannot be less than memory size
+    init_memory_size = min(args.init_memory_size, args.memory_size)
 
     # check input files
     if args.task == 'play':
@@ -232,7 +235,7 @@ if __name__ == '__main__':
                           frame_history=FRAME_HISTORY,
                           update_frequency=args.target_update_freq,
                           replay_buffer_size=args.memory_size,
-                          init_memory_size=args.init_memory_size,
+                          init_memory_size=init_memory_size,
                           gamma=GAMMA,
                           steps_per_episode=args.steps_per_episode,
                           max_episodes=args.max_episodes,
