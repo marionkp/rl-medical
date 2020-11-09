@@ -6,6 +6,7 @@
 import SimpleITK as sitk
 import numpy as np
 import warnings
+import os
 
 warnings.simplefilter("ignore", category=ResourceWarning)
 
@@ -14,6 +15,7 @@ __all__ = [
     'filesListBrainMRLandmark',
     'filesListCardioLandmark',
     'filesListFetalUSLandmark',
+    'filesPSP', 
     'NiftiImage']
 
 
@@ -55,6 +57,33 @@ def getLandmarksFromVTKFile(file):
                 return landmarks
 
 ###############################################################################
+
+class filesPSP():
+    def __init__(self, files, returnLandmarks=True, agents=1):
+        import csv
+        import numpy as np
+        self.pos = 0
+        print(files)
+        excel = files[0].name
+        self.image_files = []
+        with open(excel, "r") as data:
+            reader = csv.reader(data, delimiter=";")
+            self.rows = [row for row in reader if row[0].replace(" ", "") != ""][1:]
+
+    @property
+    def num_files(self):
+        return len(self.rows)
+
+    def sample_circular(self, landmarks_ids, shuffle=False):
+        while True:
+            landmarks = []
+            image_filename = os.path.join("/group/p00259/midbrainpons/rl-medical/src/data/images", self.rows[self.pos][0])
+            sitk_image, image = NiftiImage().decode(image_filename)
+            for id in landmarks_ids:
+               landmarks.append(self.rows[self.pos][id*3+3: id*3+6]) 
+               
+            self.pos = (self.pos+1)%len(self.rows) 
+            yield [image]*len(landmarks_ids), np.array(landmarks).astype(np.int), [image_filename[:-7]]*len(landmarks_ids), sitk_image.GetSpacing()    
 
 
 class filesListBrainMRLandmark(object):

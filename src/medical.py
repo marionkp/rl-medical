@@ -5,7 +5,8 @@
 
 from dataReader import (filesListBrainMRLandmark,
                         filesListCardioLandmark,
-                        filesListFetalUSLandmark)
+                        filesListFetalUSLandmark,
+			filesPSP)
 from gym import spaces
 import gym
 import shutil
@@ -141,7 +142,8 @@ class MedicalPlayer(gym.Env):
             self.files = filesListFetalUSLandmark(files_list,
                                                   returnLandmarks,
                                                   self.agents)
-
+        elif file_type == "PSP":
+            self.files = filesPSP(files_list, returnLandmarks, self.agents) 
         # prepare file sampler
         self.filepath = None
         self.sampled_files = self.files.sample_circular(landmark_ids)
