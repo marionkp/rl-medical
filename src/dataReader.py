@@ -81,7 +81,6 @@ class filesPSP():
             for id in landmarks_ids:
                landmarks.append(self.rows[self.pos][id*3+3: id*3+6])
             self.pos = (self.pos+1)%len(self.rows) 
-            image.data = image.data/255.0 # Rescaling values to 0-1
             yield [image]*len(landmarks_ids), np.array(landmarks).astype(np.int), [image_filename[:-7]]*len(landmarks_ids), sitk_image.GetSpacing()    
 
 
