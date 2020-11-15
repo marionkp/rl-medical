@@ -1,0 +1,11 @@
+;;;landmark_1;landmark_1;landmark_1;landmark_2;landmark_2;landmark_2;landmark_3;landmark_3;landmark_3;landmark_4;landmark_4;landmark_4
+sub-25542_ses-20160919_acq-mpragesag_run-01_T1w.nii.gz;Progressive Supranuclear Palsy (PSP);TAU;103;117;132;103;113;135;103;128;118;103;114;122
+sub-23315_ses-20140428_acq-mprage125_run-01_T1w.nii.gz;Progressive Supranuclear Palsy (PSP);TAU;74;86;85;74;82;88;74;91;71;74;81;78
+sub-24492_ses-20150204_acq-mprage125_run-02_T1w.nii.gz;Progressive Supranuclear Palsy (PSP);TAU;73;87;82;73;83;86;73;91;68;73;80;74
+sub-23313_ses-20141204_acq-mpragend_rec-nd_run-01_T1w.nii.gz;Progressive Supranuclear Palsy (PSP);TAU;86;125;119;86;121;123;86;133;100;86;117;109
+sub-26633_ses-20180227_acq-mpragesag_rec-nd_run-01_T1w.nii.gz;Progressive Supranuclear Palsy (PSP);TAU;107;112;143;107;105;146;107;122;132;107;109;134
+sub-22994_ses-20140131_acq-mprage_run-01_T1w.nii.gz;Control;;92;105;136;92;97;143;92;112;121;94;97;124
+sub-19559_ses-20140304_acq-mprage125_run-01_T1w.nii.gz;Control;;73;91;81;73;85;85;73;98;67;73;85;74
+sub-26625_ses-20180223_acq-mpragesag_rec-nd_run-01_T1w.nii.gz;Control;;106;119;142;106;112;148;106;127;127;106;115;133
+sub-21610_ses-20140210_acq-mpragesag_run-01_T1w.nii.gz;Control;;104;116;108;104;110;115;104;123;91;104;109;99
+sub-23083_ses-20140227_acq-mprage125_run-01_T1w.nii.gz;Control;;74;89;88;74;82;91;74;94;73;74;82;80
