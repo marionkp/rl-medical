@@ -63,11 +63,10 @@ class filesPSP():
         import csv
         import numpy as np
         self.pos = 0
-        print(files)
         excel = files[0].name
         self.image_files = []
         with open(excel, "r") as data:
-            reader = csv.reader(data, delimiter=";")
+            reader = csv.reader(data, delimiter=",")
             self.rows = [row for row in reader if row[0].replace(" ", "") != ""][1:]
 
     @property
@@ -77,12 +76,12 @@ class filesPSP():
     def sample_circular(self, landmarks_ids, shuffle=False):
         while True:
             landmarks = []
-            image_filename = os.path.join("/group/p00259/midbrainpons/rl-medical/src/data/images", self.rows[self.pos][0])
+            image_filename = os.path.join("data", "images", self.rows[self.pos][0])
             sitk_image, image = NiftiImage().decode(image_filename)
             for id in landmarks_ids:
-               landmarks.append(self.rows[self.pos][id*3+3: id*3+6]) 
-               
+               landmarks.append(self.rows[self.pos][id*3+3: id*3+6])
             self.pos = (self.pos+1)%len(self.rows) 
+            image.data = image.data/255.0 # Rescaling values to 0-1
             yield [image]*len(landmarks_ids), np.array(landmarks).astype(np.int), [image_filename[:-7]]*len(landmarks_ids), sitk_image.GetSpacing()    
 
 
@@ -91,7 +90,7 @@ class filesListBrainMRLandmark(object):
 
         Attributes:
         files_list: Two or one text files that contain a list of all images and
-        (landmarks)
+        (landmarks) 
         returnLandmarks: Return landmarks if task is train or eval
         (default: True)
     """
